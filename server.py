@@ -8,7 +8,7 @@ app = Flask(__name__)
 def home():
     return redirect(url_for("server"))
 
-API_KEY = "re_4jT9uMnR_FpBgpk5cEj3bCLQ1kmCc3GZV"
+API_KEY = "re_KzxVfrAK_2C9BttGnpfNdoGuoiXUoC99C"
 
 @app.route("/submit", methods = ["GET", "POST"])
 def server():
@@ -33,11 +33,9 @@ def server():
   </body>
 </html>
 """
-
-
         response = resend.Emails.send({
         "from": "onboarding@resend.dev",
-        "to": "chibuchidavid159@gmail.com",
+        "to": "zenny4114@gmail.com",
         "subject": "New Response",
         "html": html_message
         })
